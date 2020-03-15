@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "lint-staged": "lint-staged",
-    "tslint": "tslint -c ./tslint.json src/**/**.ts",
+    "tslint": "tslint -c ./tslint.json src/**/**.tsx",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "start": "webpack-dev-server"
   },
@@ -33,7 +33,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git add",
+      "pre-commit": "git add & lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
