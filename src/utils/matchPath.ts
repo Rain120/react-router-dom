@@ -1,5 +1,5 @@
-import pathToRegexp from 'path-to-regex';
-import { AnyObject, AnyArray } from 'src/index.d';
+import { pathToRegexp } from 'path-to-regexp';
+import { AnyObject } from 'src/index.d';
 
 function compilePath(path: string | string[], options) {
   const keys = [];
@@ -10,7 +10,7 @@ function compilePath(path: string | string[], options) {
 }
 
 // https://github.com/ReactTraining/react-router/blob/b77283cb75/packages/react-router/docs/api/matchPath.md
-function matchPath(pathname, options: AnyObject = {}) {
+function matchPath(pathname, options: AnyObject = {}): AnyObject {
   if (typeof options === 'string' || Array.isArray(options)) {
     options = { path: options };
   }

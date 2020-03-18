@@ -2,10 +2,8 @@
  * @Author: Rainy
  * @Date: 2020-03-10 16:45:44
  * @LastEditors: Rainy
- * @LastEditTime: 2020-03-15 14:28:38
+ * @LastEditTime: 2020-03-15 23:03:24
  */
-
-import React from 'react';
 
 // base type
 export interface AnyObject {
@@ -19,3 +17,5 @@ export type CustomArray<T> = Array<T>;
 export type AnyFunction = () => any;
 
 export type NullFunction = () => null;
+
+export type WithParamsFunction = (...args: any) => null;
