@@ -4,7 +4,8 @@
     "./example"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "example"
   ],
   "compilerOptions": {
     /* Basic Options */

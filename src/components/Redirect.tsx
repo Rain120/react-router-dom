@@ -2,14 +2,27 @@ import React, { useContext } from 'react';
 import * as RouterContext from './RouterContext';
 import { AnyObject } from '../index.d';
 
-// https://github.com/ReactTraining/react-router/blob/b77283cb75/packages/react-router/docs/api/Redirect.md
-export default function Redirect(props) {
-  const ctx: AnyObject= useContext(RouterContext);
-  const { history, location } = ctx;
-  const {to, from } = props;
-  if (!from || from === location.pathname) {
-    history.push(to);
-  }
-
-  return null;
+interface RedirectProps {
+  to?: string;
+  from?: string;
+  pathname?: string;
 }
+
+// https://github.com/ReactTraining/react-router/blob/b77283cb75/packages/react-router/docs/api/Redirect.md
+const Redirect:React.FC<RedirectProps> = ({ to, from }) => {
+  return (
+    <RouterContext.Consumer>
+      {(context: AnyObject) => {
+        const { history, location } = context;
+        if (context) {
+          if (!from || from === location.pathname) {
+            history.push(to);
+          }
+        }
+        return null;
+      }}
+    </RouterContext.Consumer>
+  );
+}
+
+export default Redirect;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as RouterContext from './RouterContext';
 import matchPath from '../utils/matchPath';
 import { AnyObject, AnyFunction, WithParamsFunction } from 'src/index.d';
@@ -16,7 +16,7 @@ export interface IRoute {
 }
 
 // https://github.com/ReactTraining/react-router/blob/b77283cb75/packages/react-router/docs/api/Route.md
-export default function Route(props: IRoute) {
+const Route: React.FC<IRoute> = (props: IRoute) => {
   return (
     <RouterContext.Consumer>
       {(context: AnyObject): React.Component | null => {
@@ -43,3 +43,5 @@ export default function Route(props: IRoute) {
     </RouterContext.Consumer>
   );
 }
+
+export default Route;

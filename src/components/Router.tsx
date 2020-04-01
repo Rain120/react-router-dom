@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as RouterContext from './RouterContext';
 import { AnyObject, NullFunction } from 'src/index.d';
+import { useIsMounted } from '../utils/useIsMounted';
 
 // router type
 export interface IRouter {
@@ -41,11 +42,12 @@ function computeRootMatch(pathname: string): IMatch {
 
 // https://github.com/ReactTraining/react-router/blob/b77283cb75/packages/react-router/docs/api/Router.md
 export default function Router(props: any) {
-  let _isMounted: boolean = false;
+  let _isMounted: any = useIsMounted();
   let _pendingLocation: AnyObject | null = null;
   let unlisten: NullFunction | null = null;
   const { children, history = {}, staticContext = {} } = props;
   const [location, setLocation] = useState(history.location);
+  
   if (!props.staticContext && props.history) {
     unlisten = props.history.listen(location => {
       if (_isMounted) {
@@ -62,6 +64,7 @@ export default function Router(props: any) {
       setLocation({ location: _pendingLocation });
     }
     return () => {
+      _isMounted = false;
       unlisten && unlisten();
     };
   }, [location]);
